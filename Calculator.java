@@ -4,19 +4,20 @@ import java.awt.*;
 
 public class Calculator {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Calculator");
+        JFrame frame = new JFrame("Máy tính");
         JPanel panel = new JPanel(new BorderLayout());
 
-        JTextField soLuongField = new JTextField(10);
-        JTextField donGiaField = new JTextField(10);
-        JTextField thanhTienField = new JTextField(10);
+        JTextField soLuongField = new JTextField(16); // Tăng size ô nhập data
+        JTextField donGiaField = new JTextField(16);
+        JTextField thanhTienField = new JTextField(16);
         thanhTienField.setEditable(false);
 
+        // Tăng size chữ cho nhãn
         JLabel headerLabel = new JLabel("Bạn hãy nhập vào số lượng và đơn giá:");
-        headerLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 36));
         panel.add(headerLabel, BorderLayout.NORTH);
 
-        JPanel centerPanel = new JPanel(new GridBagLayout()); // Sử dụng GridBagLayout cho tự do sắp xếp
+        JPanel centerPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridx = 0;
@@ -51,6 +52,12 @@ public class Calculator {
         gbc.anchor = GridBagConstraints.CENTER;
         centerPanel.add(thanhTienField, gbc);
 
+        
+        Font textFieldFont = new Font("Arial", Font.PLAIN, 15); // Tăng size chữ
+        soLuongField.setFont(textFieldFont);
+        donGiaField.setFont(textFieldFont);
+        thanhTienField.setFont(textFieldFont);
+
         panel.add(centerPanel, BorderLayout.CENTER);
 
         donGiaField.addActionListener(new ActionListener() {
@@ -61,7 +68,7 @@ public class Calculator {
                     int thanhTien = (int) (donGia * soLuong);
                     thanhTienField.setText(String.valueOf(thanhTien));
                 } catch (NumberFormatException ex) {
-                    thanhTienField.setText("Invalid input");
+                    thanhTienField.setText("Dữ liệu không hợp lệ");
                 }
             }
         });
